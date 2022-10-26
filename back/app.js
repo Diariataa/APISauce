@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-const sauceRoutes = require('./routes/sauces');
+// const sauceRoutes = require('./routes/sauces');
 const path = require('path');
 
 const app = express();
@@ -26,6 +26,6 @@ mongoose.connect('mongodb+srv://Diariata:Azerty1234@cluster0.9se0x0b.mongodb.net
 
 app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/auth', userRoutes);
-app.use('/api/sauces', sauceRoutes);
+// app.use('/api/sauces', sauceRoutes);
 module.exports = app
 
