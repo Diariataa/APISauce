@@ -1,13 +1,17 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-// const sauceRoutes = require('./routes/sauces');
+//Importation des routes
+const sauceRoutes = require('./routes/sauces');
+const userRoutes = require('./routes/user');
+
 const path = require('path');
 
 const app = express();
 app.use(express.json());
-const userRoutes = require('./routes/user');
 
+
+//Header pour contourner erreurs de CORS
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
@@ -15,6 +19,7 @@ app.use((req, res, next) => {
     next();
   });
 
+  //Connection à la base de donnée MongoDB
 mongoose.connect('mongodb+srv://Diariata:Azerty1234@cluster0.9se0x0b.mongodb.net/?retryWrites=true&w=majority',
 { useNewUrlParser: true,
   useUnifiedTopology: true })
@@ -23,9 +28,11 @@ mongoose.connect('mongodb+srv://Diariata:Azerty1234@cluster0.9se0x0b.mongodb.net
 
 
 
-
+// Gestion des images
 app.use('/images', express.static(path.join(__dirname, 'images')));
+
+// Routes necessaires
 app.use('/api/auth', userRoutes);
-// app.use('/api/sauces', sauceRoutes);
+app.use('/api/sauces', sauceRoutes);
 module.exports = app
 

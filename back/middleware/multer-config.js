@@ -1,5 +1,8 @@
+//implémenter des téléchargements de fichiers pour que les 
+// utilisateurs puissent télécharger des sauces.
 const multer = require('multer');
 
+// nous utiliserons multer , un package qui nous permet de gérer les fichiers entrants dans les requêtes HTTP. 
 const MIME_TYPES = {
   'image/jpg': 'jpg',
   'image/jpeg': 'jpg',
