@@ -21,3 +21,5 @@ passwordSchema
   .is()
   .not()
   .oneOf(["Passw0rd", "Password123"]); // Blacklist de valeurs à proscrire
+
+module.exports = passwordSchema;

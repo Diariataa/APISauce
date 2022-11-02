@@ -11,7 +11,11 @@ const path = require("path");
 
 const app = express();
 app.use(express.json());
-app.use(helmet());
+app.use(
+  helmet({
+    crossOriginResourcePolicy: false,
+  })
+);
 
 //Header pour contourner erreurs de CORS
 app.use((req, res, next) => {
@@ -30,7 +34,7 @@ app.use((req, res, next) => {
 //Connection à la base de donnée MongoDB
 mongoose
   .connect(
-    "mongodb+srv://Diariata:Azerty1234@cluster0.9se0x0b.mongodb.net/?retryWrites=true&w=majority",
+    `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.9se0x0b.mongodb.net/?retryWrites=true&w=majority`,
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => console.log("Connexion à MongoDB réussie !"))
