@@ -15,7 +15,7 @@ export class SingleSauceComponent implements OnInit {
   loading!: boolean;
   sauce$!: Observable<Sauce>;
   userId!: string;
-  likePending!: boolean;
+  likePending!: boolean;                   
   liked!: boolean;
   disliked!: boolean;
   errorMessage!: string;

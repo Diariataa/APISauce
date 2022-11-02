@@ -14,9 +14,11 @@ const storage = multer.diskStorage({
     callback(null, 'images');
   },
   filename: (req, file, callback) => {
-    const name = file.originalname.split(' ').join('_');
-    const extension = MIME_TYPES[file.mimetype];
-    callback(null, name + Date.now() + '.' + extension);
+    let lastDotIndex = file.originalname.lastIndexOf(".");
+    let name = file.originalname.slice(0, lastDotIndex)
+    let extension = file.originalname.slice(lastDotIndex)
+    let newName = `${name}-${dateformat(new Date(), 'isoDateTime')}${extension}`
+    callback(null, newName)
   }
 });
 
